@@ -12,11 +12,11 @@ public class CPlayerInfoSlot : MonoBehaviour {
 
 	void Awake()
 	{
-		this.score_text = gameObject.transform.FindChild("score").GetComponent<TextMesh>();
-		this.go_text = gameObject.transform.FindChild("go").GetComponent<TextMesh>();
-		this.shake_text = gameObject.transform.FindChild("shake").GetComponent<TextMesh>();
-		this.ppuk_text = gameObject.transform.FindChild("ppuk").GetComponent<TextMesh>();
-		this.pee_count_text = gameObject.transform.FindChild("pee").GetComponent<TextMesh>();
+		this.score_text = gameObject.transform.Find("score").GetComponent<TextMesh>();
+		this.go_text = gameObject.transform.Find("go").GetComponent<TextMesh>();
+		this.shake_text = gameObject.transform.Find("shake").GetComponent<TextMesh>();
+		this.ppuk_text = gameObject.transform.Find("ppuk").GetComponent<TextMesh>();
+		this.pee_count_text = gameObject.transform.Find("pee").GetComponent<TextMesh>();
 	}
 
 

@@ -19,12 +19,12 @@ public class CPopupGameResult : MonoBehaviour {
 		this.win_sprite = CSpriteManager.Instance.get_sprite("win");
 		this.lose_sprite = CSpriteManager.Instance.get_sprite("lose");
 
-		transform.FindChild("button_play").GetComponent<Button>().onClick.AddListener(this.on_touch);
-		this.win_lose = transform.FindChild("title").GetComponent<Image>();
-		this.money = transform.FindChild("money").GetComponent<Text>();
-		this.score = transform.FindChild("score").GetComponent<Text>();
-		this.double_val = transform.FindChild("double").GetComponent<Text>();
-		this.final_score = transform.FindChild("final_score").GetComponent<Text>();
+		transform.Find("button_play").GetComponent<Button>().onClick.AddListener(this.on_touch);
+		this.win_lose = transform.Find("title").GetComponent<Image>();
+		this.money = transform.Find("money").GetComponent<Text>();
+		this.score = transform.Find("score").GetComponent<Text>();
+		this.double_val = transform.Find("double").GetComponent<Text>();
+		this.final_score = transform.Find("final_score").GetComponent<Text>();
 	}
 
 

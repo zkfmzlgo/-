@@ -13,11 +13,11 @@ public class CPopupPlayerOrder : MonoBehaviour {
 	{
 		this.slots = new List<Transform>();
 
-		this.root = transform.FindChild("root").gameObject;
-		Transform slot01 = root.transform.FindChild("slot01");
+		this.root = transform.Find("root").gameObject;
+		Transform slot01 = root.transform.Find("slot01");
 		this.slots.Add(slot01);
 
-		Transform slot02 = root.transform.FindChild("slot02");
+		Transform slot02 = root.transform.Find("slot02");
 		this.slots.Add(slot02);
 	}
 

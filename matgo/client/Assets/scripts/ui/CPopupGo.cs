@@ -17,7 +17,7 @@ public class CPopupGo : MonoBehaviour {
 			this.go_images.Add(spr);
 		}
 
-		this.go = transform.FindChild("image").GetComponent<Image>();
+		this.go = transform.Find("image").GetComponent<Image>();
 	}
 
 

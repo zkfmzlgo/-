@@ -15,7 +15,7 @@ public class CPlayerCardPosition : MonoBehaviour
 	void Awake()
 	{
 		List<Vector3> targets = new List<Vector3>();
-		make_slot_positions(transform.FindChild("floor"), targets);
+		make_slot_positions(transform.Find("floor"), targets);
 		this.floor_positions = new Dictionary<PAE_TYPE, Vector3>();
 		this.floor_positions.Add(PAE_TYPE.KWANG, targets[0]);
 		this.floor_positions.Add(PAE_TYPE.YEOL, targets[1]);
@@ -23,7 +23,7 @@ public class CPlayerCardPosition : MonoBehaviour
 		this.floor_positions.Add(PAE_TYPE.PEE, targets[3]);
 
 		this.hand_positions = new List<Vector3>();
-		make_slot_positions(transform.FindChild("hand"), this.hand_positions);
+		make_slot_positions(transform.Find("hand"), this.hand_positions);
 	}
 
 

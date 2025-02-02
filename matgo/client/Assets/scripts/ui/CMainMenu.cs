@@ -9,8 +9,8 @@ public class CMainMenu : MonoBehaviour
 
 	void Awake()
 	{
-		this.room = GameObject.Find("Main").transform.FindChild("playroom").gameObject;
-		transform.FindChild("button_play").GetComponent<Button>().onClick.AddListener(this.on_play);
+		this.room = GameObject.Find("Main").transform.Find("playroom").gameObject;
+		transform.Find("button_play").GetComponent<Button>().onClick.AddListener(this.on_play);
 
 		this.ef_intro = GameObject.Find("ef_falling");
 

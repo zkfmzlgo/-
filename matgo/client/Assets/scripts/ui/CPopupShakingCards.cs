@@ -12,7 +12,7 @@ public class CPopupShakingCards : MonoBehaviour {
 		this.slots = new List<Image>();
 		for (int i = 0; i < 3; ++i)
 		{
-			Transform obj = transform.FindChild(string.Format("slot{0:D2}", (i + 1)));
+			Transform obj = transform.Find(string.Format("slot{0:D2}", (i + 1)));
 			this.slots.Add(obj.GetComponent<Image>());
 		}
 	}

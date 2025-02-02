@@ -9,8 +9,8 @@ public class CPopupGoStop : MonoBehaviour {
 
 	void Awake()
 	{
-		transform.FindChild("button_go").GetComponent<Button>().onClick.AddListener(this.on_touch_01);
-		transform.FindChild("button_stop").GetComponent<Button>().onClick.AddListener(this.on_touch_02);
+		transform.Find("button_go").GetComponent<Button>().onClick.AddListener(this.on_touch_01);
+		transform.Find("button_stop").GetComponent<Button>().onClick.AddListener(this.on_touch_02);
 	}
 
 

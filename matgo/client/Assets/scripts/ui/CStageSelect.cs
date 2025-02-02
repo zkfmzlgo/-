@@ -15,16 +15,16 @@ public class CStageSelect : MonoBehaviour {
 
 	void Awake()
 	{
-		transform.FindChild("button_challenge").GetComponent<Button>().onClick.AddListener(this.on_challenge);
-		transform.FindChild("button_prev").GetComponent<Button>().onClick.AddListener(this.on_prev);
-		transform.FindChild("button_next").GetComponent<Button>().onClick.AddListener(this.on_next);
+		transform.Find("button_challenge").GetComponent<Button>().onClick.AddListener(this.on_challenge);
+		transform.Find("button_prev").GetComponent<Button>().onClick.AddListener(this.on_prev);
+		transform.Find("button_next").GetComponent<Button>().onClick.AddListener(this.on_next);
 
-		this.room = GameObject.Find("Main").transform.FindChild("playroom").gameObject;
+		this.room = GameObject.Find("Main").transform.Find("playroom").gameObject;
 
-		this.has_money = transform.FindChild("money").GetComponent<Text>();
-		this.npc_name = transform.FindChild("npc_name").GetComponent<Text>();
-		this.grade = transform.FindChild("grade").GetComponent<Text>();
-		this.point = transform.FindChild("point").GetComponent<Text>();
+		this.has_money = transform.Find("money").GetComponent<Text>();
+		this.npc_name = transform.Find("npc_name").GetComponent<Text>();
+		this.grade = transform.Find("grade").GetComponent<Text>();
+		this.point = transform.Find("point").GetComponent<Text>();
 	}
 
 

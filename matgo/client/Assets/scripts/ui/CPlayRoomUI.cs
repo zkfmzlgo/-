@@ -91,8 +91,8 @@ public class CPlayRoomUI : CSingletonMonobehaviour<CPlayRoomUI>, IMessageReceive
 		this.player_card_manager.Add(new CPlayerCardManager());
 
 		this.player_info_slots = new List<CPlayerInfoSlot>();
-		this.player_info_slots.Add(transform.FindChild("player_info_01").GetComponent<CPlayerInfoSlot>());
-		this.player_info_slots.Add(transform.FindChild("player_info_02").GetComponent<CPlayerInfoSlot>());
+		this.player_info_slots.Add(transform.Find("player_info_01").GetComponent<CPlayerInfoSlot>());
+		this.player_info_slots.Add(transform.Find("player_info_02").GetComponent<CPlayerInfoSlot>());
 
 		CPacketBufferManager.initialize(1);
 		this.back_image = CSpriteManager.Instance.get_sprite("back");
@@ -117,7 +117,7 @@ public class CPlayRoomUI : CSingletonMonobehaviour<CPlayRoomUI>, IMessageReceive
 			//obj.GetComponent<Image>().color = back_red;
 		}
 
-		this.ef_focus = transform.FindChild("focus").gameObject;
+		this.ef_focus = transform.Find("focus").gameObject;
 		this.ef_focus.SetActive(false);
 
 		load_hint_arrows();
@@ -1150,22 +1150,6 @@ public class CPlayRoomUI : CSingletonMonobehaviour<CPlayRoomUI>, IMessageReceive
 				card_picture.update_card(card, get_hwatoo_sprite(card));
 			}
 		}
-        Input.gyro.enabled = true;
-
-        // 카드가 내려놓아지는 조건
-        while (true)
-        {
-            Vector3 gyroRotation = Input.gyro.rotationRateUnbiased;
-
-            // 특정 기울기 조건을 만족하면 루프 종료
-            if (Mathf.Abs(gyroRotation.x) > 2.0f || Mathf.Abs(gyroRotation.y) > 2.0f)
-            {
-                Debug.Log("Card drop detected based on gyro input.");
-                break;
-            }
-
-            yield return null;
-        }
 
 		if (event_type == CARD_EVENT_TYPE.BOMB)
 		{
@@ -1190,6 +1174,32 @@ public class CPlayRoomUI : CSingletonMonobehaviour<CPlayRoomUI>, IMessageReceive
 				0.05f));
 
 			yield return new WaitForSeconds(card_moving_delay);
+			
+			Input.gyro.enabled = true;
+
+			if (player_index == this.player_me_index)
+			{
+				// 카드가 내려놓아지는 조건
+				while (true)
+				{
+					Vector3 gyroRotation = Input.gyro.rotationRateUnbiased;
+
+					// 특정 기울기 조건을 만족하면 루프 종료
+					if (Mathf.Abs(gyroRotation.x) > 2.0f || Mathf.Abs(gyroRotation.y) > 2.0f)
+					{
+						Debug.Log("Card drop detected based on gyro input.");
+						// 0.5초 후에 1초 동안 진동 실행
+						// StartCoroutine(VibrateWithDelay(1000, 0.5f));
+						// 내 패를 제출 할때만 진동
+
+						Handheld.Vibrate();
+
+						break;
+					}
+
+					yield return null;
+				}
+			}
 
 			// 이동 장면.
 			player_card.transform.localScale = SCALE_TO_FLOOR;
@@ -1197,7 +1207,13 @@ public class CPlayRoomUI : CSingletonMonobehaviour<CPlayRoomUI>, IMessageReceive
 		}
 	}
 
-
+	// 휴대폰 진동 추가
+	IEnumerator VibrateWithDelay(long duration, float delay)
+	{
+		yield return new WaitForSeconds(delay); // 지정한 시간만큼 대기
+		VibrationManager.Vibrate(duration); // 지정한 시간(duration) 동안 진동 실행
+	}
+	
 	IEnumerator scale_to(CCardPicture card_picture, float ratio, float duration)
 	{
 		card_picture.sprite_renderer.sortingOrder = CSpriteLayerOrderManager.Instance.Order;

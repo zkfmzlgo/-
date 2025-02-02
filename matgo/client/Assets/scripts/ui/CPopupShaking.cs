@@ -12,8 +12,8 @@ public class CPopupShaking : MonoBehaviour {
 
 	void Awake()
 	{
-		transform.FindChild("button_yes").GetComponent<Button>().onClick.AddListener(this.on_touch_01);
-		transform.FindChild("button_no").GetComponent<Button>().onClick.AddListener(this.on_touch_02);
+		transform.Find("button_yes").GetComponent<Button>().onClick.AddListener(this.on_touch_01);
+		transform.Find("button_no").GetComponent<Button>().onClick.AddListener(this.on_touch_02);
 	}
 
 
